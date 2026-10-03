@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Order Ayurvedic products from Prana Ayurveda. Secure, easy ordering with WhatsApp confirmation.">
+  <title>Order Now | Prana Ayurveda</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="order.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="inner-page">
+
+  <!-- Top Trust Bar -->
+  <div class="order-trust-bar">
+    <span><i data-lucide="shield-check"></i> GMP Certified Products</span>
+    <span><i data-lucide="truck"></i> Pan India Delivery</span>
+    <span><i data-lucide="refresh-ccw"></i> Easy Returns</span>
+    <span><i data-lucide="lock"></i> Secure WhatsApp Checkout</span>
+  </div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html" aria-label="Prana Ayurveda home">
+      <span class="brand-mark">P</span>
+      <span><strong>prana</strong><small>AYURVEDA & WELLNESS</small></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation"></nav>
+    <a class="button button-dark header-cta" href="contact.html">Consult an expert <i data-lucide="arrow-up-right"></i></a>
+    <button class="icon-button menu-toggle" aria-label="Open menu" aria-expanded="false"><i data-lucide="menu"></i></button>
+    <!-- Cart Icon -->
+    <button class="cart-icon-btn" id="cartToggle" aria-label="View cart">
+      <i data-lucide="shopping-bag"></i>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="order-hero">
+      <div class="order-hero-content">
+        <p class="eyebrow"><span></span> Arogya Formulations · Blessings Ayurveda</p>
+        <h1>Order <em>Pure Ayurvedic</em><br>Products</h1>
+        <p>ISO 9001:2008 & GMP Certified · Manufactured in Haridwar, Uttarakhand</p>
+        <div class="order-hero-badges">
+          <span><i data-lucide="award"></i> ISO Certified</span>
+          <span><i data-lucide="leaf"></i> 100% Herbal</span>
+          <span><i data-lucide="users"></i> 12,000+ Customers</span>
+          <span><i data-lucide="star"></i> 4.9 / 5 Rating</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+      <div class="hiw-inner">
+        <p class="eyebrow" style="justify-content:center"><span></span> Simple 3-step ordering</p>
+        <div class="hiw-steps">
+          <div class="hiw-step">
+            <span class="hiw-num">01</span>
+            <i data-lucide="package-search"></i>
+            <h3>Choose Products</h3>
+            <p>Browse our certified Ayurvedic range and add to cart</p>
+          </div>
+          <div class="hiw-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="hiw-step">
+            <span class="hiw-num">02</span>
+            <i data-lucide="clipboard-list"></i>
+            <h3>Fill Your Details</h3>
+            <p>Enter your name, address and preferred pack size</p>
+          </div>
+          <div class="hiw-arrow"><i data-lucide="arrow-right"></i></div>
+          <div class="hiw-step">
+            <span class="hiw-num">03</span>
+            <i data-lucide="message-circle"></i>
+            <h3>Confirm on WhatsApp</h3>
+            <p>Our team confirms your order and arranges delivery</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products + Cart Layout -->
+    <section class="order-layout">
+      <!-- Left: Products -->
+      <div class="order-products-col">
+        <!-- Filters -->
+        <div class="order-filters">
+          <button class="filter-btn active" data-cat="all">All Products</button>
+          <button class="filter-btn" data-cat="liver">Liver & Detox</button>
+          <button class="filter-btn" data-cat="women">Women's Wellness</button>
+          <button class="filter-btn" data-cat="immunity">Immunity</button>
+          <button class="filter-btn" data-cat="digestive">Digestive</button>
+          <button class="filter-btn" data-cat="respiratory">Respiratory</button>
+          <button class="filter-btn" data-cat="kids">Kids</button>
+        </div>
+
+        <!-- Search -->
+        <div class="order-search-wrap">
+          <i data-lucide="search"></i>
+          <input type="search" id="orderSearch" placeholder="Search products..." aria-label="Search products">
+        </div>
+
+        <!-- Product Cards -->
+        <div class="order-product-grid" id="orderProductGrid"></div>
+      </div>
+
+      <!-- Right: Cart (sticky) -->
+      <aside class="order-cart-col" id="cartSidebar">
+        <div class="cart-header">
+          <h2><i data-lucide="shopping-bag"></i> Your Order</h2>
+          <span class="cart-count" id="cartCount">0 items</span>
+        </div>
+
+        <div class="cart-empty" id="cartEmpty">
+          <i data-lucide="package-open"></i>
+          <p>Your cart is empty.<br>Add products to get started.</p>
+        </div>
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-summary" id="cartSummary" style="display:none">
+          <div class="cart-total-row">
+            <span>Subtotal</span>
+            <strong id="cartSubtotal">₹0</strong>
+          </div>
+          <div class="cart-total-row cart-total-main">
+            <span>Total (incl. GST)</span>
+            <strong id="cartTotal">₹0</strong>
+          </div>
+          <p class="cart-delivery-note"><i data-lucide="truck"></i> Free delivery on orders above ₹500</p>
+        </div>
+
+        <!-- Checkout Form -->
+        <form class="checkout-form" id="checkoutForm" style="display:none">
+          <h3>Delivery Details</h3>
+          <label>Full Name *<input type="text" name="name" required placeholder="Your full name"></label>
+          <label>Phone Number *<input type="tel" name="phone" required placeholder="+91 XXXXX XXXXX"></label>
+          <label>Email Address<input type="email" name="email" placeholder="you@example.com"></label>
+          <label>Delivery Address *<textarea name="address" required placeholder="House no., Street, City, State, PIN" rows="3"></textarea></label>
+          <label>State *
+            <select name="state" required>
+              <option value="">Select State</option>
+              <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+              <option>Chandigarh</option><option>Chhattisgarh</option><option>Delhi</option>
+              <option>Goa</option><option>Gujarat</option><option>Haryana</option>
+              <option>Himachal Pradesh</option><option>Jharkhand</option><option>Karnataka</option>
+              <option>Kerala</option><option>Madhya Pradesh</option><option>Maharashtra</option>
+              <option>Manipur</option><option>Meghalaya</option><option>Mizoram</option>
+              <option>Nagaland</option><option>Odisha</option><option>Punjab</option>
+              <option>Rajasthan</option><option>Sikkim</option><option>Tamil Nadu</option>
+              <option>Telangana</option><option>Tripura</option><option>Uttar Pradesh</option>
+              <option>Uttarakhand</option><option>West Bengal</option>
+            </select>
+          </label>
+          <label>PIN Code *<input type="text" name="pin" required placeholder="6-digit PIN" maxlength="6" pattern="[0-9]{6}"></label>
+          <label>Special Instructions
+            <textarea name="notes" placeholder="Any special instructions or queries..." rows="2"></textarea>
+          </label>
+          <div class="checkout-actions">
+            <button type="submit" class="btn-place-order">
+              <i data-lucide="message-circle"></i>
+              Place Order on WhatsApp
+            </button>
+            <p class="checkout-note"><i data-lucide="shield-check"></i> Your details are shared only with our care team via WhatsApp</p>
+          </div>
+        </form>
+
+        <button class="btn-proceed-checkout" id="proceedCheckout" style="display:none">
+          Proceed to Checkout <i data-lucide="arrow-right"></i>
+        </button>
+      </aside>
+    </section>
+
+    <!-- Mobile Cart Drawer -->
+    <div class="mobile-cart-overlay" id="mobileCartOverlay"></div>
+    <div class="mobile-cart-drawer" id="mobileCartDrawer">
+      <div class="mobile-cart-header">
+        <h3>Your Order</h3>
+        <button id="closeCartDrawer" aria-label="Close cart"><i data-lucide="x"></i></button>
+      </div>
+      <div class="mobile-cart-body" id="mobileCartBody"></div>
+    </div>
+
+    <!-- Trust Section -->
+    <section class="order-trust-section">
+      <div class="trust-inner">
+        <p class="eyebrow" style="justify-content:center"><span></span> Why customers trust us</p>
+        <div class="trust-cards">
+          <div class="trust-card">
+            <i data-lucide="award"></i>
+            <h4>ISO 9001:2008 Certified</h4>
+            <p>GMP certified manufacturing facility in Haridwar, Uttarakhand</p>
+          </div>
+          <div class="trust-card">
+            <i data-lucide="flask-conical"></i>
+            <h4>Lab Tested Formulas</h4>
+            <p>Every batch tested for purity, potency and safety before dispatch</p>
+          </div>
+          <div class="trust-card">
+            <i data-lucide="leaf"></i>
+            <h4>100% Natural Ingredients</h4>
+            <p>Sourced from trusted herb growers across India</p>
+          </div>
+          <div class="trust-card">
+            <i data-lucide="headphones"></i>
+            <h4>Expert Support</h4>
+            <p>Our Ayurvedic experts guide you before and after your order</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="order-reviews">
+      <div class="reviews-inner">
+        <p class="eyebrow" style="justify-content:center"><span></span> Customer reviews</p>
+        <h2 style="text-align:center;font:500 clamp(32px,4vw,52px)/1.1 var(--display);margin:0 0 40px">What our customers say</h2>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Liver preparation ne meri health bilkul badal di. 2 mahine mein fark dikh gaya. Genuine product hai."</p>
+            <div class="review-author"><span class="review-avatar">RK</span><div><strong>Rajesh Kumar</strong><small>Delhi · Verified Buyer</small></div></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Female tonic is amazing. My energy levels improved significantly. Will definitely reorder. Highly recommended!"</p>
+            <div class="review-author"><span class="review-avatar">PS</span><div><strong>Priya Sharma</strong><small>Chandigarh · Verified Buyer</small></div></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★★</div>
+            <p>"Baby tonic bahut achha hai. Mere bache ka appetite improve hua aur growth bhi better ho gayi. Thank you!"</p>
+            <div class="review-author"><span class="review-avatar">AM</span><div><strong>Anita Mehta</strong><small>Lucknow · Verified Buyer</small></div></div>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">★★★★☆</div>
+            <p>"Memory booster syrup is genuinely effective. My concentration has improved. Good quality Ayurvedic product."</p>
+            <div class="review-author"><span class="review-avatar">VT</span><div><strong>Vikram Tiwari</strong><small>Haridwar · Verified Buyer</small></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="order-faq">
+      <div class="faq-inner">
+        <p class="eyebrow" style="justify-content:center"><span></span> Order FAQs</p>
+        <h2 style="text-align:center;font:500 clamp(30px,3.5vw,48px)/1.1 var(--display);margin:0 0 35px">Common questions</h2>
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>How do I place an order? <i data-lucide="plus"></i></summary>
+            <p>Add products to your cart, fill in your delivery details, and click "Place Order on WhatsApp". Our team will confirm your order and arrange delivery.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What are the delivery charges? <i data-lucide="plus"></i></summary>
+            <p>Delivery is free on orders above ₹500. For smaller orders, a nominal delivery charge applies based on your location.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does delivery take? <i data-lucide="plus"></i></summary>
+            <p>Standard delivery takes 3-7 business days across India. Express delivery options are available in select cities.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Are these products safe? <i data-lucide="plus"></i></summary>
+            <p>All products are GMP certified and manufactured in ISO 9001:2008 certified facilities. Please consult a healthcare professional before use, especially during pregnancy.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can I return a product? <i data-lucide="plus"></i></summary>
+            <p>Yes. If you receive a damaged or incorrect product, contact us within 48 hours via WhatsApp and we will arrange a replacement or refund.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you offer bulk / wholesale orders? <i data-lucide="plus"></i></summary>
+            <p>Yes, we offer special pricing for bulk and wholesale orders. Contact us directly on WhatsApp or call +91 78143 18466 for pricing.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Order Success Toast -->
+  <div class="order-toast" id="orderToast" role="status" aria-live="polite">
+    <i data-lucide="check-circle-2"></i>
+    <div>
+      <strong>Order sent on WhatsApp!</strong>
+      <span>Our team will confirm your order shortly.</span>
+    </div>
+  </div>
+
+  <!-- Sticky Mobile Cart Bar -->
+  <div class="mobile-cart-bar" id="mobileCartBar" style="display:none">
+    <div class="mcb-left">
+      <i data-lucide="shopping-bag"></i>
+      <span id="mcbCount">0 items</span>
+    </div>
+    <button class="mcb-btn" id="mcbViewCart">View Cart & Checkout <i data-lucide="arrow-right"></i></button>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-top">
+      <a class="brand brand-light" href="index.html"><span class="brand-mark">P</span><span><strong>prana</strong><small>AYURVEDA & WELLNESS</small></span></a>
+      <p>Ancient wisdom for your<br>modern rhythm.</p>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2024 Prana Ayurveda · Arogya Formulations Pvt Ltd</span>
+      <span>GMP & ISO 9001:2008 Certified</span>
+      <a href="#top">Back to top <i data-lucide="arrow-up"></i></a>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/917814318466?text=Hello%20Prana%20Ayurveda%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">
+    <i data-lucide="message-circle"></i><span>Order on WhatsApp</span>
+  </a>
+
+  <script src="pages.js"></script>
+  <script src="order.js"></script>
+</body>
+</html>

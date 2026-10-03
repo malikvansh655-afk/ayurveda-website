@@ -1,0 +1,9 @@
+{
+  "name": "Prana Ayurveda Wellness",
+  "short_name": "Prana Ayurveda",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f5f1e8",
+  "theme_color": "#17352d",
+  "description": "Ancient wisdom and modern wellness for your natural rhythm."
+}
